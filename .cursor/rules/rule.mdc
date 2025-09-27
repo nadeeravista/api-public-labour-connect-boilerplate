@@ -1,0 +1,87 @@
+---
+alwaysApply: true
+---
+
+## Architecture
+
+- This is a Nest.js backend api building project
+
+## Example of code organizing structure
+
+├── modules
+│   └── work-order
+│   ├── work-order.controller.ts
+│   ├── work-order.module.ts
+│   ├── work-order.service.ts
+│   └── work-order.types.ts
+└── types
+└── index.ts
+
+## User prefer AI to use the files in `src/modules/review` as reference
+
+## User prefer no example data when annotation for swagger in types
+
+## API design strict REST
+
+# Admin gets all data ✅ allowed
+
+GET /review
+GET /review-stats
+GET /provider-stats
+
+# Users get their own data ✅ allowed
+
+GET /me?reviewAs=customer
+GET /review-stats/me?reviewAs=provider
+GET /provider-stats/me?reviewAs=provider
+
+# CRUD operations ✅ allowed
+
+POST /review
+GET /review/123
+PATCH /review/123
+DELETE /review/123
+
+POST /review/provider-stats ❌ flagged
+
+# No descriptions needed
+
+@ApiResponse({ status: 200, description: "Success" }) // ❌ flagged
+@ApiProperty({ description: "Some prop" }) // ❌ flagged
+@ApiResponse({ status: 200 }) // ✅ allowed
+
+# No code comments needed
+
+// ❌ disallowed
+const x = 5; // inline comment
+
+function test() {
+// ❌ inline inside function body
+console.log(x);
+}
+
+// ✅ allowed
+/\*\*
+
+- This is the main doc for the class
+  _/
+  class MyClass {
+  /\*\* Doc for method _/
+  myMethod() {}
+  }
+
+# No try catch blocks needed
+
+// ❌ flagged No need try catch
+try {
+doSomething();
+} catch (e) {
+console.error(e);
+}
+
+# But if the entire code is commented leave
+
+✅ allowed
+// doSomething();
+// const x = 5;
+// doSomething();

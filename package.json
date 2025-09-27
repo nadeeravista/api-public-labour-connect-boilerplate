@@ -1,0 +1,89 @@
+{
+  "name": "nestjs-knex-typescript",
+  "version": "1.0.0",
+  "description": "NestJS API with Knex.js and PostgreSQL using TypeScript",
+  "main": "dist/main.js",
+  "engines": {
+    "node": "v22.19.0"
+  },
+  "scripts": {
+    "build": "nest build",
+    "start": "node dist/main.js",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main.js",
+    "dev": "nest start --watch",
+    "dev:debug": "LOG_LEVEL=debug nest start --watch",
+    "migrate": "knex migrate:latest",
+    "migrate:rollback": "knex migrate:rollback --all",
+    "migrate:rollback:migrate:seed": "knex migrate:rollback --all && knex migrate:latest && knex seed:run",
+    "seed": "knex seed:run",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts",
+    "format:check": "prettier --check src/**/*.ts",
+    "commit": "git-cz",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "nestjs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.896.0",
+    "@nestjs/common": "^11.1.6",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.1.6",
+    "@nestjs/jwt": "^11.0.0",
+    "@nestjs/passport": "^11.0.5",
+    "@nestjs/platform-express": "^11.1.6",
+    "@nestjs/swagger": "^11.2.0",
+    "@types/lodash": "^4.17.20",
+    "aws-sdk": "^2.1692.0",
+    "dotenv": "^17.2.2",
+    "fs": "^0.0.1-security",
+    "jwks-rsa": "^3.2.0",
+    "knex": "^3.1.0",
+    "knexnest": "^1.0.0",
+    "lodash": "^4.17.21",
+    "nestjs-knex": "^3.0.0",
+    "node-cache": "^5.1.2",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "path": "^0.12.7",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.8.1",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.10",
+    "@types/node": "^20.0.0",
+    "@types/passport-jwt": "^4.0.1",
+    "@types/pg": "^8.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.54.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.3.0",
+    "commitizen": "^4.3.0",
+    "prettier": "^3.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.1",
+    "@commitlint/cli": "^20.0.0",
+    "@commitlint/config-conventional": "^20.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}

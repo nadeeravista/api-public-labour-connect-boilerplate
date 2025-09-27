@@ -1,0 +1,2924 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "HealthController_getHealth",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "ok"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "example": "2025-02-09T12:55:46.000Z"
+                    },
+                    "uptime": {
+                      "type": "number",
+                      "example": 123.456
+                    },
+                    "environment": {
+                      "type": "string",
+                      "example": "development"
+                    },
+                    "version": {
+                      "type": "string",
+                      "example": "1.0.0"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Health check endpoint",
+        "tags": [
+          "Health"
+        ]
+      }
+    },
+    "/provider": {
+      "get": {
+        "operationId": "ProviderController_getAllProviders",
+        "parameters": [
+          {
+            "name": "search-term",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profession",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "town",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "specialization",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rating",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "experience",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Providers"
+        ]
+      },
+      "post": {
+        "operationId": "ProviderController_createProvider",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProviderDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Provider"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Providers"
+        ]
+      }
+    },
+    "/provider/{id}": {
+      "get": {
+        "operationId": "ProviderController_getProviderById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Provider"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Providers"
+        ]
+      },
+      "delete": {
+        "operationId": "ProviderController_deleteProvider",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Providers"
+        ]
+      }
+    },
+    "/provider/me": {
+      "get": {
+        "operationId": "ProviderController_getMe",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Provider"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Providers"
+        ]
+      },
+      "patch": {
+        "operationId": "ProviderController_updateProvider",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProviderDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Provider"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Providers"
+        ]
+      }
+    },
+    "/provider/{providerId}/attachment/{attachmentId}": {
+      "delete": {
+        "operationId": "ProviderController_deleteProviderAttachment",
+        "parameters": [
+          {
+            "name": "providerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attachmentId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Providers"
+        ]
+      }
+    },
+    "/provider/{id}/photo": {
+      "delete": {
+        "operationId": "ProviderController_deleteProviderPhoto",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Providers"
+        ]
+      }
+    },
+    "/user/me": {
+      "get": {
+        "operationId": "UsersController_getMe",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "operationId": "UsersController_getUserById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      },
+      "delete": {
+        "operationId": "UsersController_deleteUser",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/service-request": {
+      "get": {
+        "operationId": "ServiceRequestController_getAllServiceRequests",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Service Requests"
+        ]
+      },
+      "post": {
+        "operationId": "ServiceRequestController_createServiceRequest",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateServiceRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceRequest"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Service Requests"
+        ]
+      }
+    },
+    "/service-request/{id}": {
+      "delete": {
+        "operationId": "ServiceRequestController_deleteServiceRequest",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Service Requests"
+        ]
+      }
+    },
+    "/service-request/me": {
+      "get": {
+        "operationId": "ServiceRequestController_getAllServiceRequestsMe",
+        "parameters": [
+          {
+            "name": "requesterType",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceRequestResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Service Requests"
+        ]
+      }
+    },
+    "/service-request/me/{id}": {
+      "get": {
+        "operationId": "ServiceRequestController_getAllServiceRequestsMeById",
+        "parameters": [
+          {
+            "name": "requesterType",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceRequestResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Service Requests"
+        ]
+      },
+      "patch": {
+        "operationId": "ServiceRequestController_updateServiceRequest",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceRequest"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Service Requests"
+        ]
+      }
+    },
+    "/service-request/{serviceRequestId}/attachment/{attachmentId}": {
+      "delete": {
+        "operationId": "ServiceRequestController_deleteServiceRequestAttachment",
+        "parameters": [
+          {
+            "name": "serviceRequestId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attachmentId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Service Requests"
+        ]
+      }
+    },
+    "/customer": {
+      "get": {
+        "operationId": "CustomerController_getAllCustomers",
+        "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "phone",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Customers"
+        ]
+      },
+      "post": {
+        "operationId": "CustomerController_createCustomer",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCustomerDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Customers"
+        ]
+      }
+    },
+    "/customer/me": {
+      "get": {
+        "operationId": "CustomerController_getMe",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Customers"
+        ]
+      },
+      "patch": {
+        "operationId": "CustomerController_updateCustomer",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCustomerDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Customers"
+        ]
+      }
+    },
+    "/service-schedule/me": {
+      "get": {
+        "operationId": "ServiceScheduleController_getWeeklyServiceSchedule",
+        "parameters": [
+          {
+            "name": "from",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customerId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "providerId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceScheduleResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Service Schedule"
+        ]
+      }
+    },
+    "/service-schedule": {
+      "get": {
+        "operationId": "ServiceScheduleController_getSimpleCalendarSchedule",
+        "parameters": [
+          {
+            "name": "from",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CalendarDaySchedule"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Service Schedule"
+        ]
+      }
+    },
+    "/customer-review": {
+      "get": {
+        "operationId": "ReviewController_getAllCustomerReviews",
+        "parameters": [
+          {
+            "name": "serviceRequestId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reviewedBy",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "providerId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rating",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerReviewResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reviews"
+        ]
+      },
+      "post": {
+        "operationId": "ReviewController_createCustomerReview",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCustomerReviewDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerReview"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reviews"
+        ]
+      }
+    },
+    "/provider-review": {
+      "get": {
+        "operationId": "ReviewController_getAllProviderReviews",
+        "parameters": [
+          {
+            "name": "serviceRequestId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reviewedBy",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customerId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rating",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderReviewResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reviews"
+        ]
+      },
+      "post": {
+        "operationId": "ReviewController_createProviderReview",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProviderReviewDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderReview"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reviews"
+        ]
+      }
+    },
+    "/customer-review/{id}": {
+      "get": {
+        "operationId": "ReviewController_getCustomerReviewById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerReview"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reviews"
+        ]
+      },
+      "delete": {
+        "operationId": "ReviewController_deleteCustomerReview",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Reviews"
+        ]
+      }
+    },
+    "/provider-review/{id}": {
+      "get": {
+        "operationId": "ReviewController_getProviderReviewById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderReview"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reviews"
+        ]
+      },
+      "delete": {
+        "operationId": "ReviewController_deleteProviderReview",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Reviews"
+        ]
+      }
+    },
+    "/customer/me/review": {
+      "get": {
+        "operationId": "ReviewController_getMyCustomerReviews",
+        "parameters": [
+          {
+            "name": "providerId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "serviceRequestId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerReviewResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reviews"
+        ]
+      }
+    },
+    "/provider/me/review": {
+      "get": {
+        "operationId": "ReviewController_getMyProviderReviews",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "serviceRequestId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderReviewResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reviews"
+        ]
+      }
+    },
+    "/service-category": {
+      "get": {
+        "operationId": "ServiceCategoryController_getAllServiceCategories",
+        "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "baseRate",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "estimatedDuration",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceCategoryResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Service Categories"
+        ]
+      }
+    },
+    "/request-type": {
+      "get": {
+        "operationId": "RequestTypeController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RequestType"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Request Types"
+        ]
+      }
+    },
+    "/city": {
+      "get": {
+        "operationId": "CityController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/City"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Cities"
+        ]
+      }
+    },
+    "/profession": {
+      "get": {
+        "operationId": "ProfessionController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Profession"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Professions"
+        ]
+      }
+    },
+    "/specialization": {
+      "get": {
+        "operationId": "SpecializationController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Specialization"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Specializations"
+        ]
+      }
+    },
+    "/favourite-provider": {
+      "get": {
+        "operationId": "FavouriteProvidersController_getAllFavouriteProviders",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "providerId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FavouriteProviderResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Favourite Providers"
+        ]
+      },
+      "post": {
+        "operationId": "FavouriteProvidersController_createFavouriteProvider",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFavouriteProviderDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FavouriteProviderResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Favourite Providers"
+        ]
+      }
+    },
+    "/favourite-provider/me": {
+      "get": {
+        "operationId": "FavouriteProvidersController_getMyFavouriteProviders",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FavouriteProviderResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Favourite Providers"
+        ]
+      }
+    },
+    "/favourite-provider/me/{id}": {
+      "delete": {
+        "operationId": "FavouriteProvidersController_deleteFavouriteProvider",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Favourite Providers"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Labour Connect API",
+    "description": "A RESTful API for Labour Connect platform built with NestJS, Knex.js, and TypeScript",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "Provider": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "profession": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "town": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "facebookLink": {
+            "type": "string"
+          },
+          "twitterLink": {
+            "type": "string"
+          },
+          "instagramLink": {
+            "type": "string"
+          },
+          "rating": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "experience": {
+            "type": "string"
+          },
+          "specializations": {
+            "type": "string"
+          },
+          "qualifications": {
+            "type": "string"
+          },
+          "availability": {
+            "type": "string"
+          },
+          "availableDays": {
+            "type": "string"
+          },
+          "completedJobs": {
+            "type": "number"
+          },
+          "verified": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive",
+              "suspended",
+              "pending"
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "createdDate": {
+            "type": "string"
+          },
+          "photoUrl": {
+            "type": "string"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "phone",
+          "profession",
+          "address",
+          "town",
+          "city",
+          "country",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "ProviderResponse": {
+        "type": "object",
+        "properties": {
+          "providers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Provider"
+            }
+          }
+        },
+        "required": [
+          "providers"
+        ]
+      },
+      "Buffer": {
+        "type": "object",
+        "properties": {}
+      },
+      "AttachmentDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          },
+          "buffer": {
+            "$ref": "#/components/schemas/Buffer"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "type",
+          "data"
+        ]
+      },
+      "UpdateProviderDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "profession": {
+            "type": "string"
+          },
+          "qualifications": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "zipCode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "facebookLink": {
+            "type": "string"
+          },
+          "twitterLink": {
+            "type": "string"
+          },
+          "instagramLink": {
+            "type": "string"
+          },
+          "rating": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "experience": {
+            "type": "number"
+          },
+          "specializations": {
+            "type": "string"
+          },
+          "availability": {
+            "type": "string"
+          },
+          "availableDays": {
+            "type": "string"
+          },
+          "completedJobs": {
+            "type": "number"
+          },
+          "verified": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive",
+              "suspended",
+              "pending"
+            ]
+          },
+          "photo": {
+            "$ref": "#/components/schemas/AttachmentDto"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttachmentDto"
+            }
+          }
+        }
+      },
+      "CreateProviderDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "town": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "profession": {
+            "type": "string"
+          },
+          "qualifications": {
+            "type": "string"
+          },
+          "facebookLink": {
+            "type": "string"
+          },
+          "twitterLink": {
+            "type": "string"
+          },
+          "instagramLink": {
+            "type": "string"
+          },
+          "experience": {
+            "type": "string"
+          },
+          "specializations": {
+            "type": "string"
+          },
+          "availability": {
+            "type": "string"
+          },
+          "availableDays": {
+            "type": "string"
+          },
+          "completedJobs": {
+            "type": "number"
+          },
+          "createdDate": {
+            "type": "string"
+          },
+          "photo": {
+            "$ref": "#/components/schemas/AttachmentDto"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "phone",
+          "address",
+          "town",
+          "city",
+          "country"
+        ]
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "auth0Id": {
+            "type": "string"
+          },
+          "customerId": {
+            "type": "string"
+          },
+          "role": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "providerId": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "auth0Id",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "ServiceRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "requestNumber": {
+            "type": "string"
+          },
+          "customerId": {
+            "type": "string"
+          },
+          "serviceCategoryId": {
+            "type": "string"
+          },
+          "requestType": {
+            "type": "string",
+            "enum": [
+              "Repair",
+              "Installation",
+              "Maintenance",
+              "Inspection",
+              "Consultation"
+            ]
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "Critical",
+              "High",
+              "Medium",
+              "Low"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Pending",
+              "Assigned",
+              "In Progress",
+              "Completed",
+              "Cancelled",
+              "On Hold"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "serviceStartDate": {
+            "type": "string"
+          },
+          "serviceEndDate": {
+            "type": "string"
+          },
+          "serviceDuration": {
+            "type": "number"
+          },
+          "estimatedDuration": {
+            "type": "number"
+          },
+          "actualDuration": {
+            "type": "number"
+          },
+          "providerId": {
+            "type": "string"
+          },
+          "providerName": {
+            "type": "string"
+          },
+          "customerName": {
+            "type": "string"
+          },
+          "providerRating": {
+            "type": "number"
+          },
+          "customerRating": {
+            "type": "number"
+          },
+          "providerNotes": {
+            "type": "string"
+          },
+          "customerNotes": {
+            "type": "string"
+          },
+          "laborRate": {
+            "type": "number"
+          },
+          "laborCost": {
+            "type": "number"
+          },
+          "totalCost": {
+            "type": "number"
+          },
+          "warrantyCovered": {
+            "type": "boolean"
+          },
+          "slaTarget": {
+            "type": "number"
+          },
+          "slaActual": {
+            "type": "number"
+          },
+          "slaStatus": {
+            "type": "string",
+            "enum": [
+              "Met",
+              "Missed",
+              "Pending"
+            ]
+          },
+          "assignedDate": {
+            "type": "string"
+          },
+          "scheduledStartTime": {
+            "type": "string"
+          },
+          "scheduledEndTime": {
+            "type": "string"
+          },
+          "actualStartTime": {
+            "type": "string"
+          },
+          "actualEndTime": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "requestNumber",
+          "customerId",
+          "serviceCategoryId",
+          "requestType",
+          "priority",
+          "status",
+          "description",
+          "location",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "ServiceRequestResponse": {
+        "type": "object",
+        "properties": {
+          "serviceRequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceRequest"
+            }
+          }
+        },
+        "required": [
+          "serviceRequests"
+        ]
+      },
+      "CreateUpdateAttachmentDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "type",
+          "url",
+          "data"
+        ]
+      },
+      "CreateServiceRequestDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "requestNumber": {
+            "type": "string"
+          },
+          "customerId": {
+            "type": "string"
+          },
+          "serviceCategoryId": {
+            "type": "string"
+          },
+          "requestType": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "Critical",
+              "High",
+              "Medium",
+              "Low"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "serviceStartDate": {
+            "type": "string"
+          },
+          "serviceEndDate": {
+            "type": "string"
+          },
+          "serviceDuration": {
+            "type": "number"
+          },
+          "estimatedDuration": {
+            "type": "number"
+          },
+          "providerId": {
+            "type": "string"
+          },
+          "isFlexibleOnDateAndTime": {
+            "type": "string"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateUpdateAttachmentDto"
+            }
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateServiceRequestDto": {
+        "type": "object",
+        "properties": {
+          "requestNumber": {
+            "type": "string"
+          },
+          "customerId": {
+            "type": "string"
+          },
+          "serviceCategoryId": {
+            "type": "string"
+          },
+          "requestType": {
+            "type": "string",
+            "enum": [
+              "Repair",
+              "Installation",
+              "Maintenance",
+              "Inspection",
+              "Consultation"
+            ]
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "Critical",
+              "High",
+              "Medium",
+              "Low"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Pending",
+              "Assigned",
+              "In Progress",
+              "Completed",
+              "Cancelled",
+              "On Hold"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "serviceStartDate": {
+            "type": "string"
+          },
+          "serviceEndDate": {
+            "type": "string"
+          },
+          "serviceDuration": {
+            "type": "number"
+          },
+          "estimatedDuration": {
+            "type": "number"
+          },
+          "actualDuration": {
+            "type": "number"
+          },
+          "providerId": {
+            "type": "string"
+          },
+          "providerNotes": {
+            "type": "string"
+          },
+          "customerNotes": {
+            "type": "string"
+          },
+          "laborRate": {
+            "type": "number"
+          },
+          "laborCost": {
+            "type": "number"
+          },
+          "totalCost": {
+            "type": "number"
+          },
+          "warrantyCovered": {
+            "type": "boolean"
+          },
+          "slaTarget": {
+            "type": "number"
+          },
+          "slaActual": {
+            "type": "number"
+          },
+          "slaStatus": {
+            "type": "string",
+            "enum": [
+              "Met",
+              "Missed",
+              "Pending"
+            ]
+          },
+          "assignedDate": {
+            "type": "string"
+          },
+          "scheduledStartTime": {
+            "type": "string"
+          },
+          "scheduledEndTime": {
+            "type": "string"
+          },
+          "actualStartTime": {
+            "type": "string"
+          },
+          "actualEndTime": {
+            "type": "string"
+          },
+          "isFlexibleOnDateAndTime": {
+            "type": "string"
+          }
+        }
+      },
+      "Customer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive",
+              "suspended"
+            ]
+          },
+          "registrationDate": {
+            "type": "string"
+          },
+          "totalRequests": {
+            "type": "number"
+          },
+          "rating": {
+            "type": "number"
+          },
+          "verified": {
+            "type": "boolean"
+          },
+          "serviceKeywords": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "phone",
+          "address",
+          "status",
+          "registrationDate",
+          "totalRequests",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "CustomerResponse": {
+        "type": "object",
+        "properties": {
+          "customers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Customer"
+            }
+          }
+        },
+        "required": [
+          "customers"
+        ]
+      },
+      "UpdateCustomerDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "serviceKeywords": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "phone",
+          "address"
+        ]
+      },
+      "CreateCustomerDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "serviceKeywords": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "email"
+        ]
+      },
+      "ServiceRequestScheduleItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "requestNumber": {
+            "type": "string"
+          },
+          "providerName": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "scheduledStartTime": {
+            "type": "string"
+          },
+          "scheduledEndTime": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "requestNumber",
+          "providerName",
+          "location",
+          "date",
+          "status"
+        ]
+      },
+      "DaySchedule": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "serviceRequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceRequestScheduleItem"
+            }
+          }
+        },
+        "required": [
+          "date",
+          "serviceRequests"
+        ]
+      },
+      "ServiceScheduleResponse": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "string"
+          },
+          "providerId": {
+            "type": "string"
+          },
+          "fromDate": {
+            "type": "string"
+          },
+          "toDate": {
+            "type": "string"
+          },
+          "weekSchedule": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DaySchedule"
+            }
+          },
+          "calendarSchedule": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DaySchedule"
+            }
+          },
+          "serviceRequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceRequestScheduleItem"
+            }
+          }
+        },
+        "required": [
+          "customerId",
+          "providerId",
+          "fromDate",
+          "toDate"
+        ]
+      },
+      "BasicServiceRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "providerName": {
+            "type": "string"
+          },
+          "customerName": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "dateDuration": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "providerName",
+          "customerName",
+          "location",
+          "status",
+          "description",
+          "dateDuration"
+        ]
+      },
+      "CalendarDaySchedule": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "requests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BasicServiceRequest"
+            }
+          }
+        },
+        "required": [
+          "date",
+          "requests"
+        ]
+      },
+      "CustomerReview": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "serviceRequestId": {
+            "type": "string"
+          },
+          "reviewedBy": {
+            "type": "string"
+          },
+          "providerId": {
+            "type": "string"
+          },
+          "rating": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "comment": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "serviceRequestId",
+          "reviewedBy",
+          "providerId",
+          "rating",
+          "date",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "CustomerReviewResponse": {
+        "type": "object",
+        "properties": {
+          "reviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerReview"
+            }
+          }
+        },
+        "required": [
+          "reviews"
+        ]
+      },
+      "ProviderReview": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "serviceRequestId": {
+            "type": "string"
+          },
+          "reviewedBy": {
+            "type": "string"
+          },
+          "customerId": {
+            "type": "string"
+          },
+          "rating": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "comment": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "serviceRequestId",
+          "reviewedBy",
+          "customerId",
+          "rating",
+          "date",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "ProviderReviewResponse": {
+        "type": "object",
+        "properties": {
+          "reviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProviderReview"
+            }
+          }
+        },
+        "required": [
+          "reviews"
+        ]
+      },
+      "CreateCustomerReviewDto": {
+        "type": "object",
+        "properties": {
+          "serviceRequestId": {
+            "type": "string"
+          },
+          "providerId": {
+            "type": "string"
+          },
+          "rating": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "comment": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "serviceRequestId",
+          "providerId",
+          "rating"
+        ]
+      },
+      "CreateProviderReviewDto": {
+        "type": "object",
+        "properties": {
+          "serviceRequestId": {
+            "type": "string"
+          },
+          "customerId": {
+            "type": "string"
+          },
+          "rating": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "comment": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "serviceRequestId",
+          "customerId",
+          "rating"
+        ]
+      },
+      "ServiceCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "baseRate": {
+            "type": "number"
+          },
+          "estimatedDuration": {
+            "type": "number"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "baseRate",
+          "estimatedDuration",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "ServiceCategoryResponse": {
+        "type": "object",
+        "properties": {
+          "serviceCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceCategory"
+            }
+          }
+        },
+        "required": [
+          "serviceCategories"
+        ]
+      },
+      "RequestType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "City": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "district": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "population": {
+            "type": "number"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "province",
+          "district",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "Profession": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "baseRate": {
+            "type": "number"
+          },
+          "requiresLicense": {
+            "type": "boolean"
+          },
+          "requiresCertification": {
+            "type": "boolean"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "category",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "Specialization": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "professionId": {
+            "type": "string"
+          },
+          "baseRate": {
+            "type": "number"
+          },
+          "estimatedDuration": {
+            "type": "number"
+          },
+          "requiresCertification": {
+            "type": "boolean"
+          },
+          "requiresEquipment": {
+            "type": "boolean"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "professionId",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "FavouriteProviderResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "customerId": {
+            "type": "string"
+          },
+          "providerId": {
+            "type": "string"
+          },
+          "providerName": {
+            "type": "string"
+          },
+          "photoUrl": {
+            "type": "string"
+          },
+          "specializations": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "customerId",
+          "providerId",
+          "providerName",
+          "photoUrl",
+          "specializations",
+          "phone",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "CreateFavouriteProviderDto": {
+        "type": "object",
+        "properties": {
+          "providerId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "providerId"
+        ]
+      }
+    }
+  }
+}

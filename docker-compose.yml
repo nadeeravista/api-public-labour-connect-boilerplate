@@ -1,0 +1,25 @@
+name: labour-connect-postgres
+services:
+  postgres-db:
+    container_name: labour
+    image: postgres:16-alpine
+    restart: always
+    platform: linux/amd64
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres.xuytslvclpnbogklqmhu
+      POSTGRES_PASSWORD: kal@401981@postgress/#labour-connect
+    ports:
+      - "5430:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - labour-network
+
+networks:
+  labour-network:
+    name: labour-network
+    driver: bridge
+
+volumes:
+  postgres_data:

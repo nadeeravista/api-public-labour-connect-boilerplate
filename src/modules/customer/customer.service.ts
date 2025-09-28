@@ -8,8 +8,8 @@ import {
   UpdateCustomerDto,
   CustomerFilters,
 } from "./customer.types";
-import { applyDynamicFilters } from "@/modules/query.utils";
-import { getCurrentDateTime, generateId } from "@/utils/iD.utils";
+import { applyDynamicFilters } from "../query.utils";
+import { getCurrentDateTime, generateId } from "../../utils/iD.utils";
 import { UsersService } from "../user/user.service";
 
 @Injectable()

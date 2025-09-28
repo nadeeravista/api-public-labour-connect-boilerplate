@@ -10,6 +10,18 @@ const environment = process.env.NODE_ENV || "development";
 const logger = new Logger("DatabaseModule");
 
 const knexConfig: { [key: string]: Knex.Config } = {
+  test: {
+    client: "sqlite3",
+    connection: ":memory:",
+    useNullAsDefault: true,
+    migrations: {
+      directory: "./migrations",
+    },
+    seeds: {
+      directory: "./seeds",
+    },
+    debug: false,
+  },
   development: {
     client: "postgresql",
     connection: {

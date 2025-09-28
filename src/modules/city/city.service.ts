@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { Knex } from "knex";
 import { InjectKnex } from "nestjs-knex";
-import { City } from "@/modules/city/city.types";
+import { City } from "./city.types";
 
 @Injectable()
 export class CityService {

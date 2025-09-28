@@ -12,9 +12,9 @@ import {
   UpdateProviderDto,
   ProviderFilters,
 } from "./provider.types";
-import { applyDynamicFilters } from "@/modules/query.utils";
-import { UsersService } from "@/modules/user/user.service";
-import { generateId, getCurrentDateTime } from "@/utils/iD.utils";
+import { applyDynamicFilters } from "../query.utils";
+import { UsersService } from "../user/user.service";
+import { generateId, getCurrentDateTime } from "../../utils/iD.utils";
 
 @Injectable()
 export class ProviderService {

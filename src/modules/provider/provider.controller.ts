@@ -11,18 +11,18 @@ import {
   Req,
 } from "@nestjs/common";
 import { ApiTags, ApiResponse, ApiParam, ApiQuery } from "@nestjs/swagger";
-import { ProviderService } from "@/modules/provider/provider.service";
+import { ProviderService } from "./provider.service";
 import {
   ProviderResponse,
   Provider,
   CreateProviderDto,
   UpdateProviderDto,
   ProviderFilters,
-} from "@/modules/provider/provider.types";
-import { ApiResponse as ApiResponseType } from "@/types";
-import { JwtAuthGuard } from "@/utils/guards/auth.guard";
-import { UserPolicyGuard } from "@/utils/guards/user.policy.guard";
-import { AdminGuard } from "@/utils/guards/admin.guard";
+} from "./provider.types";
+import { ApiResponse as ApiResponseType } from "../../types";
+import { JwtAuthGuard } from "../../utils/guards/auth.guard";
+import { UserPolicyGuard } from "../../utils/guards/user.policy.guard";
+import { AdminGuard } from "../../utils/guards/admin.guard";
 
 @ApiTags("Providers")
 @Controller()

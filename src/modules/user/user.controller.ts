@@ -1,9 +1,9 @@
-import { JwtAuthGuard } from "@/utils/guards/auth.guard";
-import { UsersService } from "@/modules/user/user.service";
+import { JwtAuthGuard } from "../../utils/guards/auth.guard";
+import { UsersService } from "./user.service";
 import { Controller, Get, Delete, Param, Req, UseGuards } from "@nestjs/common";
 import { ApiTags, ApiResponse, ApiParam } from "@nestjs/swagger";
-import { User } from "@/modules/user/user.types";
-import { AdminGuard } from "@/utils/guards/admin.guard";
+import { User } from "./user.types";
+import { AdminGuard } from "../../utils/guards/admin.guard";
 
 @ApiTags("Users")
 @UseGuards(JwtAuthGuard) // Only JwtAuthGuard can access this controller

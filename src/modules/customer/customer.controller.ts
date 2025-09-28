@@ -9,7 +9,7 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { ApiTags, ApiResponse, ApiQuery } from "@nestjs/swagger";
-import { CustomerService } from "@/modules/customer/customer.service";
+import { CustomerService } from "./customer.service";
 import {
   CustomerResponse,
   Customer,
@@ -17,10 +17,10 @@ import {
   UpdateCustomerDto,
   CustomerFilters,
 } from "./customer.types";
-import { ApiResponse as ApiResponseType } from "@/types";
-import { JwtAuthGuard } from "@/utils/guards/auth.guard";
-import { UserPolicyGuard } from "@/utils/guards/user.policy.guard";
-import { AdminGuard } from "@/utils/guards/admin.guard";
+import { ApiResponse as ApiResponseType } from "../../types";
+import { JwtAuthGuard } from "../../utils/guards/auth.guard";
+import { UserPolicyGuard } from "../../utils/guards/user.policy.guard";
+import { AdminGuard } from "../../utils/guards/admin.guard";
 @ApiTags("Customers")
 @UseGuards(JwtAuthGuard)
 @Controller("customer")

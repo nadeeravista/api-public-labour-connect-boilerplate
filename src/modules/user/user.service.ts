@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectKnex, Knex } from "nestjs-knex";
-import { User } from "@/modules/user/user.types";
-import { User as AuthUser } from "@/types";
+import { User } from "./user.types";
+import { User as AuthUser } from "../../types";
 import { v4 as uuidv4 } from "uuid";
 
 /**

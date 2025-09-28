@@ -1,7 +1,7 @@
 import { Controller, Get } from "@nestjs/common";
 import { ApiTags, ApiResponse } from "@nestjs/swagger";
-import { CityService } from "@/modules/city/city.service";
-import { City } from "@/modules/city/city.types";
+import { CityService } from "./city.service";
+import { City } from "./city.types";
 
 /**
  * Public endpoint no guards

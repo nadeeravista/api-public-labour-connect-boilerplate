@@ -1,7 +1,7 @@
 ### API app
 
 - Dev Instance - https://labour-connect-lk.netlify.app/
-- Swagger integration for documentation
+- Swagger integration for documentation - http://localhost:PORT/api-docs
 - Docker can be used for local Postgress setup
 - Use `nvm(.nvmrc)` - Node package management
 - Knex - `Query builder - Transaction / Promises / Easy configuration`

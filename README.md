@@ -1,9 +1,11 @@
 ### API app
 
+- Dev Instance - https://labour-connect-lk.netlify.app/
 - Swagger integration for documentation
 - Docker can be used for local Postgress setup
 - Use `nvm(.nvmrc)` - Node package management
 - Knex - `Query builder - Transaction / Promises / Easy configuration`
+- Ony semantic commits are allowed - see details below and existing commits
 
 - Serverless motive
   - S3 storage is - `https://console.filebase.com/`

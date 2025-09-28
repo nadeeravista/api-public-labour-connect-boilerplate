@@ -5,6 +5,7 @@
 - Docker can be used for local Postgress setup
 - Use `nvm(.nvmrc)` - Node package management
 - Knex - `Query builder - Transaction / Promises / Easy configuration`
+- Pre-commit hooks added to have consistent commit messages and also for beforehand code verification
 - Ony semantic commits are allowed - see details below and existing commits
 
 - Serverless motive

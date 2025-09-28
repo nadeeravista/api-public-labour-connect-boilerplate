@@ -5,10 +5,10 @@ A modern NestJS-based backend API for connecting skilled laborers with customers
 ## 🌐 Live Demo
 
 [![Live Demo](https://img.shields.io/badge/🌐%20Live%20Demo-Visit%20Now-blue?style=for-the-badge&logo=netlify)](https://labour-connect-lk.netlify.app/)
-[![API Docs](https://img.shields.io/badge/📚%20API%20Docs-Swagger%20UI-green?style=for-the-badge&logo=swagger)](http://localhost:3000/api-docs)
+[![API Docs on](https://img.shields.io/badge/📚%20API%20Docs-Swagger%20UI-green?style=for-the-badge&logo=swagger)](http://localhost:3000/api-docs)
 
 - **🚀 Production**: [https://labour-connect-lk.netlify.app/](https://labour-connect-lk.netlify.app/)
-- **📚 API Documentation**: [http://localhost:3000/api-docs](http://localhost:3000/api-docs) (when running locally)
+- **📚 API Documentation on Swagger**: [http://localhost:3000/api-docs](http://localhost:3000/api-docs) (when running locally)
 - **🔧 Development**: Clone and run `npm run start:dev`
 
 ## 📋 Table of Contents
@@ -24,12 +24,11 @@ A modern NestJS-based backend API for connecting skilled laborers with customers
 ## ✨ Features
 
 - 🔐 **Authentication** - Auth0 integration for secure user management
-- 🏗️ **Service Management** - Complete CRUD operations for customers and providers
 - 📊 **Analytics** - Built-in metrics and reporting
 - 🚀 **Serverless Ready** - Optimized for cloud deployment
 - 📱 **API Documentation** - Interactive Swagger/OpenAPI documentation
 - 🧪 **Testing** - Comprehensive test suite with Jest
-- 🔄 **CI/CD** - Automated testing and deployment
+- 🔄 **Commit hooks** - Code quality
 
 ## 🛠️ Tech Stack
 
@@ -38,33 +37,26 @@ A modern NestJS-based backend API for connecting skilled laborers with customers
 - **Framework**: NestJS with TypeScript
 - **Database**: PostgreSQL with Knex.js query builder
 - **Authentication**: Auth0
-- **Testing**: Jest with Supertest
+- **Testing**: Jest
 - **Documentation**: Swagger/OpenAPI
 
 ### Infrastructure
 
 - **Storage**: Filebase (S3-compatible)
-- **Deployment**: Railway/Render
+- **Deployment**: Railway
 - **Frontend**: Netlify
-- **Project Management**: Shortcut
+- **Project Management**: On Shortcut
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
 - Node.js (use `nvm` with `.nvmrc`)
-- PostgreSQL
-- Docker (optional for local database)
+- Docker (optional for local database) for PostgreSQL
 
 ### Installation
 
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd sample-labour-connect-api
-
-# Install dependencies
-npm install
 
 # Set up environment variables
 cp env.example .env
@@ -74,7 +66,7 @@ cp env.example .env
 npm run migrate
 
 # Start development server
-npm run start:dev
+npm run dev
 ```
 
 ### Environment Setup
@@ -188,8 +180,6 @@ The application is designed for serverless deployment:
 
 - **Shortcut** - Project management and issue tracking
 
-## 📝 Contributing
-
 ### Commit Convention
 
 This project uses **Semantic Commits** following the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
@@ -236,46 +226,11 @@ This will guide you through creating a properly formatted commit message.
    - Add tests for new functionality
    - Update documentation if needed
 
-3. **Commit Changes**
+3. **Commit Helper**
 
    ```bash
    npm run commit
    ```
-
-4. **Push and Create PR**
-   ```bash
-   git push origin feat/new-feature
-   ```
-
-## 🔧 Available Scripts
-
-```bash
-# Development
-npm run start:dev          # Start development server
-npm run start:debug        # Start with debugging
-npm run build              # Build for production
-
-# Database
-npm run migrate            # Run database migrations
-npm run seed               # Seed database with sample data
-npm run migrate:rollback   # Rollback last migration
-
-# Code Quality
-npm run lint               # Run ESLint
-npm run lint:fix           # Fix ESLint issues
-npm run format             # Format code with Prettier
-npm run type-check         # Run TypeScript type checking
-
-# Testing
-npm run test               # Run tests
-npm run test:watch         # Run tests in watch mode
-npm run test:coverage      # Run tests with coverage
-npm run test:ci            # Run tests for CI
-
-# Git Hooks
-npm run commit             # Interactive commit tool
-npm run prepare            # Install Husky hooks
-```
 
 ## 📊 Project Structure
 
